@@ -32,18 +32,21 @@ esp_err_t init_dht() {
   return ret;
 }
 
-void dht_start_task() {  // Создание задачи для работы с DHT сенсором, привязанной к ядру 0
+void start_dht_task() { // Создание задачи для работы с DHT сенсором,
+                        // привязанной к ядру 0
   xTaskCreatePinnedToCore(dht_task,   // Функция задачи
                           "dht_task", // Имя задачи для отладки
                           4096,       // Размер стека в словах
                           NULL,       // Параметры задачи
                           5,          // Приоритет задачи
                           &thDhtHandle, // Указатель на хендл задачи
-                          0     // Номер ядра (0 или 1)
-  );  
+                          0             // Номер ядра (0 или 1)
+  );
 }
 
 void dht_task(void *pvParameter) {
+  TickType_t xLastWakeTime = xTaskGetTickCount();
+  const TickType_t xFrequency = pdMS_TO_TICKS(DHT_READ_INTERVAL);
   esp_task_wdt_user_handle_t wdtUserHandler;
   qDhtQueue = xQueueCreate(10, sizeof(dht_reading_t));
 
@@ -97,7 +100,8 @@ void dht_task(void *pvParameter) {
           float hum_diff = fabsf(humidity - last_valid_reading.humidity);
 
           if (temp_diff > 10.0 || hum_diff > 10.0) {
-            ESP_LOGW(TAG, "Value jump detected: T: %.1f→%.1f, H: %.1f→%.1f",
+            ESP_LOGW(TAG,
+                     "Value jump detected: T: %.1f -> %.1f, H: %.1f -> %.1f",
                      last_valid_reading.temperature, temperature,
                      last_valid_reading.humidity, humidity);
 
@@ -111,9 +115,6 @@ void dht_task(void *pvParameter) {
         last_valid_reading.temperature = temperature;
         last_valid_reading.humidity = humidity;
         last_valid_reading.valid = true;
-
-        ESP_LOGI(TAG, "Humidity: %.1f%% Temperature: %.1fC", humidity,
-                 temperature);
       } else {
         ESP_LOGW(TAG, "Attempt %d: Reading error: %s", retry + 1,
                  esp_err_to_name(result));
@@ -141,7 +142,7 @@ void dht_task(void *pvParameter) {
                  "Too many consecutive reading errors, possible sensor issue");
       }
     }
-	xQueueSend(qDhtQueue, &last_valid_reading, (TickType_t )0); 
-    vTaskDelay(pdMS_TO_TICKS(DHT_READ_INTERVAL));
+    xQueueSend(qDhtQueue, &last_valid_reading, (TickType_t)0);
+    vTaskDelayUntil(&xLastWakeTime, xFrequency);
   }
 }

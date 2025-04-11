@@ -531,9 +531,17 @@ CONFIG_PARTITION_TABLE_MD5=y
 #
 # Example Configuration
 #
-CONFIG_ESP_WIFI_SSID="myssid"
-CONFIG_ESP_WIFI_PASSWORD="mypassword"
+CONFIG_ESP_WIFI_SSID="ASUS-LAPTOP"
+CONFIG_ESP_WIFI_PASSWORD="timur_1972"
 # end of Example Configuration
+
+#
+# MQTT Configuration
+#
+CONFIG_MQTT_BROKER_URL="mqtt://192.168.137.1:1883"
+CONFIG_MQTT_USERNAME="timur"
+CONFIG_MQTT_PASSWORD="timur_1972"
+# end of MQTT Configuration
 
 #
 # Compiler options
