@@ -39,8 +39,8 @@
 #define ESP_WIFI_PASSWORD "timur1972"
 #define MQTT_BROKER_URL "mqtt://193.43.147.210"
 #define MQTT_PORT 1883
-#define MQTT_USERNAME "timur"
-#define MQTT_PASSWORD "timur_1972"
+#define MQTT_USERNAME ""
+#define MQTT_PASSWORD ""
 #define IP "193.43.147.201"
 #define GATEWAY "193.43.147.200"
 #define NETMASK "255.255.255.0"
