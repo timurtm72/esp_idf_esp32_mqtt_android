@@ -120,7 +120,7 @@ main/
 ## Связанные проекты
 - [Flutter приложение](https://github.com/timurtm72/flutter_android_mqtt_python_esp32)
 - [Python версия](https://github.com/timurtm72/python_mqtt_esp32_android)
-- [Android версия](https://github.com/timurtm72/kotlin_mqtt_esp32_python)
+- [Kotlin приложение](https://github.com/timurtm72/kotlin_mqtt_esp32_python)
 
 ## Особенности реализации
 - Многоядерное исполнение (Core 0/1)
