@@ -1,3 +1,9 @@
+# Мой сайт и резюме:
+
+- [Мой сайт:](https://technocom.site123.me/)
+- [Мое резюме инженер программист microcontrollers, PLC:](https://innopolis.hh.ru/resume/782d86d5ff0e9487200039ed1f6f3373384b30)
+- [Мое резюме инженер программист Java backend developer (Spring):](https://innopolis.hh.ru/resume/9e3b451aff03fd23830039ed1f496e79587649)
+
 # ESP32-S3 IoT Система Управления и Мониторинга
 
 Встраиваемая система на базе ESP32-S3 для сбора данных с датчика температуры/влажности и управления RGB светодиодами через MQTT протокол. Проект реализован на ESP-IDF с использованием FreeRTOS.
