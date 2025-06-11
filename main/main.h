@@ -28,13 +28,10 @@
 #include "lwip/ip4_addr.h" // Добавьте эту строку для IP4_ADDR
 #include "mqtt_client.h"
 #include "nvs_flash.h"
-#include "esp_http_server.h"
 #include <math.h>    // для fabsf
 #include <stdbool.h> // для bool, true, false
 #include <stddef.h>  // для NULL
 #include <string.h>
-#include "wifi_ap.h"
-
 
 // #define ESP_WIFI_SSID "Keenetic-5500"
 // #define ESP_WIFI_PASSWORD "YbL-kjL-WPd-u8b"
@@ -97,11 +94,9 @@ extern EventGroupHandle_t wifi_event_group;
 extern EventGroupHandle_t mqtt_event_group;
 extern EventBits_t uxMqttBits;
 extern EventBits_t uxWifiBits;
-extern esp_mqtt_client_handle_t mqtt_client;
 
 extern esp_err_t nvs_flash_init();
 extern void wifi_init(void);
-extern void wifi_init_sta_mode(const char *ssid, const char *password);
 extern esp_err_t init_dht();
 extern void dht_task(void *pvParameter);
 // Проверка валидности значений
@@ -119,7 +114,4 @@ extern void wifi_event_handler(void *arg, esp_event_base_t event_base,
                                int32_t event_id, void *event_data);
 extern esp_err_t mqtt_start(void);
 extern void mqtt_stop(void);
-extern esp_netif_t *sta_netif;
-extern esp_netif_t *ap_netif;
-extern wifi_mode_t current_mode;
 #endif /* MAIN_MAIN_H_ */
